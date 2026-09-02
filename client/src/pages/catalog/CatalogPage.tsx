@@ -63,7 +63,7 @@ export function CatalogPage() {
                 setProducts(loadedProducts);
                 setSelectedProductId(loadedProducts[0]?.id ?? null);
             } catch {
-                setError("Unable to load the catalog. Check that Catalog API is running.");
+                setError("לא ניתן לטעון את הקטלוג. ודא ששירות הקטלוג פעיל.");
             } finally {
                 setIsLoadingCategories(false);
                 setIsLoadingProducts(false);
@@ -86,7 +86,7 @@ export function CatalogPage() {
             setProducts(loadedProducts);
             setSelectedProductId(loadedProducts[0]?.id ?? null);
         } catch {
-            setError("Unable to load products for this category.");
+        setError("לא ניתן לטעון מוצרים עבור קטגוריה זו.");
         } finally {
             setIsLoadingProducts(false);
         }
@@ -111,7 +111,7 @@ export function CatalogPage() {
         return (
             <main
                 className="flex min-h-screen items-center justify-center"
-                aria-label="Loading catalog"
+                aria-label="טעינת קטלוג"
                 role="status"
             >
                 <svg
@@ -136,14 +136,14 @@ export function CatalogPage() {
                         strokeWidth="3"
                     />
                 </svg>
-                <span className="sr-only">Loading catalog</span>
+                <span className="sr-only">טוען קטלוג</span>
             </main>
         );
     }
 
     return (
         <main className="mx-auto max-w-2xl p-6">
-            <h1 className="mb-6 text-3xl font-bold">Catalog</h1>
+            <h1 className="mb-6 text-3xl font-bold">קטלוג</h1>
 
             {error && (
                 <p className="mb-4 rounded bg-red-100 p-3 text-red-700">{error}</p>
@@ -151,7 +151,7 @@ export function CatalogPage() {
 
             <div className="space-y-5 rounded-lg bg-white p-6 shadow">
                 <label className="block">
-                    <span className="mb-1 block font-medium">Category</span>
+                    <span className="mb-1 block font-medium">קטגוריה</span>
                     <select
                         value={selectedCategoryId ?? ""}
                         onChange={(event) => void handleCategoryChange(Number(event.target.value))}
@@ -167,7 +167,7 @@ export function CatalogPage() {
                 </label>
 
                 <label className="block">
-                    <span className="mb-1 block font-medium">Product</span>
+                    <span className="mb-1 block font-medium">מוצר</span>
                     <select
                         value={selectedProductId ?? ""}
                         onChange={(event) => setSelectedProductId(Number(event.target.value))}
@@ -175,11 +175,11 @@ export function CatalogPage() {
                         disabled={isLoadingProducts || products.length === 0}
                     >
                         {products.length === 0 ? (
-                            <option value="">No products available</option>
+                            <option value="">אין מוצרים זמינים</option>
                         ) : (
                             products.map((product) => (
                                 <option key={product.id} value={product.id}>
-                                    {product.name} - ${product.price.toFixed(2)}
+                                    {product.name} - ₪{product.price.toFixed(2)}
                                 </option>
                             ))
                         )}
@@ -187,7 +187,7 @@ export function CatalogPage() {
                 </label>
 
                 <label className="block">
-                    <span className="mb-1 block font-medium">Quantity</span>
+                    <span className="mb-1 block font-medium">כמות</span>
                     <input
                         type="number"
                         min="1"
@@ -202,9 +202,9 @@ export function CatalogPage() {
                 {selectedProduct && (
                     <div className="rounded bg-slate-100 p-4">
                         <p className="font-semibold">{selectedProduct.name}</p>
-                        <p>${selectedProduct.price.toFixed(2)} each</p>
+                        <p>₪{selectedProduct.price.toFixed(2)} ליחידה</p>
                         <p className="font-bold">
-                            Total: ${(selectedProduct.price * quantity).toFixed(2)}
+                            סה"כ: ₪{(selectedProduct.price * quantity).toFixed(2)}
                         </p>
                     </div>
                 )}
@@ -215,14 +215,14 @@ export function CatalogPage() {
                     disabled={!selectedProduct || isLoadingProducts}
                     className="w-full rounded bg-sky-600 px-4 py-2 font-medium text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:bg-slate-400"
                 >
-                    Add product to cart
+                    הוספת מוצר לסל
                 </button>
             </div>
 
             <div className="mt-4 space-y-4">
                 {cartItemsByCategory.size > 0 && (
                     <section className="rounded-lg bg-white p-5 shadow">
-                        <h2 className="mb-4 text-xl font-semibold">Selected items</h2>
+                        <h2 className="mb-4 text-xl font-semibold">פריטים שנבחרו</h2>
 
                         <div className="space-y-4">
                             {Array.from(cartItemsByCategory.entries()).map(
@@ -248,7 +248,7 @@ export function CatalogPage() {
                                                                 dispatch(removeFromCart(item.id))
                                                             }
                                                             className="rounded px-2 text-lg leading-none text-red-600 hover:bg-red-100"
-                                                            aria-label={`Remove ${item.name} from cart`}
+                                                            aria-label={`הסרת ${item.name} מהסל`}
                                                         >
                                                             x
                                                         </button>
@@ -267,7 +267,7 @@ export function CatalogPage() {
                         to="/checkout"
                         className="block rounded bg-emerald-600 px-4 py-2 text-center font-medium text-white hover:bg-emerald-700"
                     >
-                        Continue order
+                        להמשך להזמנה
                     </Link>
                 )}
             </div>

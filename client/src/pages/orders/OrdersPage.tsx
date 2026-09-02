@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Order } from "../../entities/order/model";
 import { getOrders } from "../../shared/api/orders-api";
 
-const purchaseDateFormatter = new Intl.DateTimeFormat("en-US", {
+const purchaseDateFormatter = new Intl.DateTimeFormat("he-IL", {
     dateStyle: "medium",
     timeStyle: "short",
 });
@@ -24,7 +24,7 @@ export function OrdersPage() {
                 }
             } catch {
                 if (isCurrent) {
-                    setError("Unable to load orders. Check that Orders API is running.");
+                    setError("לא ניתן לטעון הזמנות. ודא ששירות ההזמנות פעיל.");
                 }
             } finally {
                 if (isCurrent) {
@@ -44,7 +44,7 @@ export function OrdersPage() {
         return (
             <main
                 className="flex min-h-screen items-center justify-center"
-                aria-label="Loading orders"
+                aria-label="טעינת הזמנות"
                 role="status"
             >
                 <svg
@@ -69,21 +69,21 @@ export function OrdersPage() {
                         strokeWidth="3"
                     />
                 </svg>
-                <span className="sr-only">Loading orders</span>
+                <span className="sr-only">טוען הזמנות</span>
             </main>
         );
     }
 
     return (
         <main className="mx-auto max-w-2xl p-6">
-            <h1 className="mb-6 text-3xl font-bold">Orders</h1>
+            <h1 className="mb-6 text-3xl font-bold">הזמנות</h1>
 
             {error && (
                 <p className="rounded bg-red-100 p-3 text-red-700">{error}</p>
             )}
 
             {!error && orders.length === 0 && (
-                <p className="rounded-lg bg-white p-5 shadow">No orders yet.</p>
+                <p className="rounded-lg bg-white p-5 shadow">אין עדיין הזמנות.</p>
             )}
 
             <div className="space-y-4">
@@ -106,13 +106,13 @@ export function OrdersPage() {
                             {order.items.map((item) => (
                                 <li key={item.productId} className="flex justify-between">
                                     <span>{item.name}</span>
-                                    <span className="font-medium">Quantity: {item.quantity}</span>
+                                    <span className="font-medium">כמות: {item.quantity}</span>
                                 </li>
                             ))}
                         </ul>
 
                         <p className="mt-4 border-t border-slate-200 pt-3 text-right font-bold">
-                            Total: ${order.totalPrice.toFixed(2)}
+                            סה"כ: ₪{order.totalPrice.toFixed(2)}
                         </p>
                     </article>
                 ))}

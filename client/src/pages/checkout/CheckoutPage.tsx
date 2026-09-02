@@ -15,15 +15,15 @@ function getFieldErrors({
     const errors: FieldErrors = {};
 
     if (!/\p{L}/u.test(customerName.trim())) {
-        errors.customerName = "Full name must contain at least one letter.";
+        errors.customerName = "השם המלא חייב לכלול לפחות אות אחת.";
     }
 
     if (!/\p{L}/u.test(address.trim())) {
-        errors.address = "Address must contain at least one letter.";
+        errors.address = "הכתובת חייבת לכלול לפחות אות אחת.";
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-        errors.email = "Enter a valid email address.";
+        errors.email = "יש להזין כתובת דוא״ל תקינה.";
     }
 
     return errors;
@@ -67,7 +67,7 @@ export function CheckoutPage() {
         }
 
         if (cartItems.length === 0) {
-            setError("Your cart is empty.");
+            setError("סל הקניות שלך ריק.");
             return;
         }
 
@@ -92,7 +92,7 @@ export function CheckoutPage() {
             dispatch(clearCart());
             navigate("/orders");
         } catch {
-            setError("Unable to create the order. Check that Orders API is running.");
+            setError("לא ניתן ליצור את ההזמנה. ודא ששירות ההזמנות פעיל.");
         } finally {
             setIsSubmitting(false);
         }
@@ -101,14 +101,14 @@ export function CheckoutPage() {
     if (cartItems.length === 0) {
         return (
             <main className="mx-auto max-w-2xl p-6">
-                <h1 className="mb-4 text-3xl font-bold">Order summary</h1>
-                <p className="mb-4">Your cart is empty.</p>
+                <h1 className="mb-4 text-3xl font-bold">סיכום ההזמנה</h1>
+                <p className="mb-4">סל הקניות שלך ריק.</p>
 
                 <Link
                     to="/"
                     className="rounded bg-sky-600 px-4 py-2 font-medium text-white"
                 >
-                    Go to catalog
+                    לקטלוג
                 </Link>
             </main>
         );
@@ -116,10 +116,10 @@ export function CheckoutPage() {
 
     return (
         <main className="mx-auto max-w-2xl p-6">
-            <h1 className="mb-6 text-3xl font-bold">Order summary</h1>
+            <h1 className="mb-6 text-3xl font-bold">סיכום ההזמנה</h1>
 
             <section className="mb-6 rounded-lg bg-white p-5 shadow">
-                <h2 className="mb-4 text-xl font-semibold">Selected products</h2>
+                <h2 className="mb-4 text-xl font-semibold">מוצרים שנבחרו</h2>
 
                 <div className="space-y-3">
                     {cartItems.map((item) => (
@@ -130,19 +130,19 @@ export function CheckoutPage() {
                             <div>
                                 <p className="font-medium">{item.name}</p>
                                 <p className="text-sm text-slate-600">
-                                    {item.categoryName} · Quantity: {item.quantity}
+                                    {item.categoryName} · כמות: {item.quantity}
                                 </p>
                             </div>
 
                             <p className="font-semibold">
-                                ${(item.price * item.quantity).toFixed(2)}
+                                ₪{(item.price * item.quantity).toFixed(2)}
                             </p>
                         </div>
                     ))}
                 </div>
 
                 <p className="mt-4 text-right text-xl font-bold">
-                    Total: ${totalPrice.toFixed(2)}
+                    סה"כ: ₪{totalPrice.toFixed(2)}
                 </p>
             </section>
 
@@ -151,14 +151,14 @@ export function CheckoutPage() {
                 noValidate
                 className="space-y-4 rounded-lg bg-white p-5 shadow"
             >
-                <h2 className="text-xl font-semibold">Customer details</h2>
+                <h2 className="text-xl font-semibold">פרטי הלקוח</h2>
 
                 {error && (
                     <p className="rounded bg-red-100 p-3 text-red-700">{error}</p>
                 )}
 
                 <label className="block">
-                    <span className="mb-1 block font-medium">Full name</span>
+                    <span className="mb-1 block font-medium">שם מלא</span>
                     <input
                         type="text"
                         value={customerName}
@@ -186,7 +186,7 @@ export function CheckoutPage() {
                 </label>
 
                 <label className="block">
-                    <span className="mb-1 block font-medium">Full address</span>
+                    <span className="mb-1 block font-medium">כתובת מלאה</span>
                     <input
                         type="text"
                         value={address}
@@ -214,7 +214,7 @@ export function CheckoutPage() {
                 </label>
 
                 <label className="block">
-                    <span className="mb-1 block font-medium">Email</span>
+                    <span className="mb-1 block font-medium">דוא״ל</span>
                     <input
                         type="email"
                         value={email}
@@ -244,7 +244,7 @@ export function CheckoutPage() {
                     disabled={isSubmitting || !isFormValid}
                     className="w-full rounded bg-emerald-600 px-4 py-2 font-medium text-white hover:bg-emerald-700 disabled:bg-slate-400"
                 >
-                    {isSubmitting ? "Creating order..." : "Confirm order"}
+                    {isSubmitting ? "יוצר הזמנה..." : "אישור הזמנה"}
                 </button>
             </form>
         </main>

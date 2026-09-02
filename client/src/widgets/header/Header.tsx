@@ -10,18 +10,18 @@ export function Header() {
         <header className="bg-slate-900 text-white">
             <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
                 <NavLink to="/" className="text-xl font-bold">
-                    Shop
+                    חנות
                 </NavLink>
 
                 <nav className="flex gap-4">
                     <NavLink to="/" className="hover:text-sky-300">
-                        Catalog
+                        קטלוג
                     </NavLink>
                     <NavLink to="/checkout" className="hover:text-sky-300">
-                        Cart ({itemsCount})
+                        סל ({itemsCount})
                     </NavLink>
                     <NavLink to="/orders" className="hover:text-sky-300">
-                        Orders
+                        הזמנות
                     </NavLink>
                 </nav>
             </div>

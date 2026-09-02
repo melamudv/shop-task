@@ -41,12 +41,22 @@ namespace catalog_api.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Electronics"
+                            Name = "חלב וגבינות"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Books"
+                            Name = "טואליטיקה"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "בשר ועופות"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "ירקות ופירות"
                         });
                 });
 
@@ -84,25 +94,161 @@ namespace catalog_api.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            ImageUrl = "https://placehold.co/300x200?text=Headphones",
-                            Name = "Wireless Headphones",
-                            Price = 99.99m
+                            ImageUrl = "https://placehold.co/300x200?text=Milk",
+                            Name = "חלב תנובה 3%",
+                            Price = 7.90m
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 1,
-                            ImageUrl = "https://placehold.co/300x200?text=Keyboard",
-                            Name = "Mechanical Keyboard",
-                            Price = 79.99m
+                            ImageUrl = "https://placehold.co/300x200?text=Yellow+Cheese",
+                            Name = "גבינה צהובה עמק",
+                            Price = 24.90m
                         },
                         new
                         {
                             Id = 3,
+                            CategoryId = 1,
+                            ImageUrl = "https://placehold.co/300x200?text=Cottage",
+                            Name = "קוטג' 5%",
+                            Price = 6.50m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            ImageUrl = "https://placehold.co/300x200?text=Yogurt",
+                            Name = "יוגורט טבעי",
+                            Price = 5.90m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 1,
+                            ImageUrl = "https://placehold.co/300x200?text=Butter",
+                            Name = "חמאה",
+                            Price = 12.90m
+                        },
+                        new
+                        {
+                            Id = 6,
                             CategoryId = 2,
-                            ImageUrl = "https://placehold.co/300x200?text=Clean+Code",
-                            Name = "Clean Code",
-                            Price = 39.99m
+                            ImageUrl = "https://placehold.co/300x200?text=Shampoo",
+                            Name = "שמפו לשיער",
+                            Price = 18.90m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 2,
+                            ImageUrl = "https://placehold.co/300x200?text=Toothpaste",
+                            Name = "משחת שיניים",
+                            Price = 11.90m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 2,
+                            ImageUrl = "https://placehold.co/300x200?text=Toilet+Paper",
+                            Name = "נייר טואלט",
+                            Price = 22.90m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 2,
+                            ImageUrl = "https://placehold.co/300x200?text=Hand+Soap",
+                            Name = "סבון ידיים",
+                            Price = 8.90m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 2,
+                            ImageUrl = "https://placehold.co/300x200?text=Deodorant",
+                            Name = "דאודורנט",
+                            Price = 15.90m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 3,
+                            ImageUrl = "https://placehold.co/300x200?text=Chicken+Breast",
+                            Name = "חזה עוף טרי",
+                            Price = 39.90m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 3,
+                            ImageUrl = "https://placehold.co/300x200?text=Chicken+Schnitzel",
+                            Name = "שניצל עוף",
+                            Price = 34.90m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 3,
+                            ImageUrl = "https://placehold.co/300x200?text=Ground+Beef",
+                            Name = "בשר טחון",
+                            Price = 49.90m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 3,
+                            ImageUrl = "https://placehold.co/300x200?text=Ribeye+Steak",
+                            Name = "סטייק אנטריקוט",
+                            Price = 89.90m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 3,
+                            ImageUrl = "https://placehold.co/300x200?text=Chicken+Wings",
+                            Name = "כנפיים עוף",
+                            Price = 24.90m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 4,
+                            ImageUrl = "https://placehold.co/300x200?text=Tomatoes",
+                            Name = "עגבניות",
+                            Price = 8.90m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CategoryId = 4,
+                            ImageUrl = "https://placehold.co/300x200?text=Cucumbers",
+                            Name = "מלפפונים",
+                            Price = 7.90m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoryId = 4,
+                            ImageUrl = "https://placehold.co/300x200?text=Bananas",
+                            Name = "בננות",
+                            Price = 9.90m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoryId = 4,
+                            ImageUrl = "https://placehold.co/300x200?text=Apples",
+                            Name = "תפוחים",
+                            Price = 12.90m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryId = 4,
+                            ImageUrl = "https://placehold.co/300x200?text=Avocado",
+                            Name = "אבוקדו",
+                            Price = 14.90m
                         });
                 });
 
