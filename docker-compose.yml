@@ -1,0 +1,45 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+
+  mongo:
+    image: mongo:8
+    volumes:
+      - mongo-data:/data/db
+
+  catalog-api:
+    build:
+      context: ./catalog-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: Server=sqlserver;Database=ShopCatalogDb;User Id=sa;Password=${SQL_SA_PASSWORD};TrustServerCertificate=True
+    depends_on:
+      - sqlserver
+
+  orders-api:
+    build:
+      context: ./orders-api
+    environment:
+      PORT: 3001
+      MONGODB_URI: mongodb://mongo:27017/shop-orders
+      CLIENT_URL: http://localhost
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "80:80"
+    depends_on:
+      - catalog-api
+      - orders-api
+
+volumes:
+  sqlserver-data:
+  mongo-data:
