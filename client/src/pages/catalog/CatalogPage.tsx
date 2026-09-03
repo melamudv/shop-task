@@ -168,22 +168,55 @@ export function CatalogPage() {
 
                 <label className="block">
                     <span className="mb-1 block font-medium">מוצר</span>
-                    <select
-                        value={selectedProductId ?? ""}
-                        onChange={(event) => setSelectedProductId(Number(event.target.value))}
-                        className="w-full rounded border border-slate-300 p-2"
-                        disabled={isLoadingProducts || products.length === 0}
-                    >
-                        {products.length === 0 ? (
-                            <option value="">אין מוצרים זמינים</option>
-                        ) : (
-                            products.map((product) => (
-                                <option key={product.id} value={product.id}>
-                                    {product.name} - ₪{product.price.toFixed(2)}
-                                </option>
-                            ))
-                        )}
-                    </select>
+                    {isLoadingProducts ? (
+                        <div
+                            className="flex h-10 items-center justify-center gap-2 rounded border border-slate-300 bg-slate-50 text-sky-600"
+                            role="status"
+                        >
+                            <svg
+                                className="size-5 animate-spin"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="9"
+                                    stroke="currentColor"
+                                    strokeWidth="3"
+                                />
+                                <path
+                                    className="opacity-90"
+                                    d="M21 12a9 9 0 0 0-9-9"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeWidth="3"
+                                />
+                            </svg>
+                            <span>טוען מוצרים...</span>
+                        </div>
+                    ) : (
+                        <select
+                            value={selectedProductId ?? ""}
+                            onChange={(event) =>
+                                setSelectedProductId(Number(event.target.value))
+                            }
+                            className="w-full rounded border border-slate-300 p-2"
+                            disabled={products.length === 0}
+                        >
+                            {products.length === 0 ? (
+                                <option value="">אין מוצרים זמינים</option>
+                            ) : (
+                                products.map((product) => (
+                                    <option key={product.id} value={product.id}>
+                                        {product.name} - ₪{product.price.toFixed(2)}
+                                    </option>
+                                ))
+                            )}
+                        </select>
+                    )}
                 </label>
 
                 <label className="block">
@@ -228,7 +261,7 @@ export function CatalogPage() {
                             {Array.from(cartItemsByCategory.entries()).map(
                                 ([categoryName, items]) => (
                                     <div key={categoryName}>
-                                        <h3 className="font-medium text-slate-700">
+                                        <h3 className="inline-block rounded bg-sky-600 px-3 py-1 font-medium text-white">
                                             {categoryName}
                                         </h3>
                                         <ul className="mt-2 space-y-1">
