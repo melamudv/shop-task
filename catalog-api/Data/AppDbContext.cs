@@ -43,7 +43,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
      {
          Id = 3,
          Name = "קוטג' 5%",
-         Price = 6.50m,
+         Price = 6.55m,
          ImageUrl = "https://placehold.co/300x200?text=Cottage",
          CategoryId = 1
      },

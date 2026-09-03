@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using catalog_api.Data;
 
@@ -10,9 +11,11 @@ using catalog_api.Data;
 namespace catalog_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260902203747_AddGroceryCatalogSeedData")]
+    partial class AddGroceryCatalogSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,7 +115,7 @@ namespace catalog_api.Migrations
                             CategoryId = 1,
                             ImageUrl = "https://placehold.co/300x200?text=Cottage",
                             Name = "קוטג' 5%",
-                            Price = 6.55m
+                            Price = 6.50m
                         },
                         new
                         {
