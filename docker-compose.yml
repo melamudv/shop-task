@@ -22,6 +22,7 @@ services:
   catalog-api:
     build:
       context: ./catalog-api
+    restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__DefaultConnection: Server=sqlserver;Database=ShopCatalogDb;User Id=sa;Password=${SQL_SA_PASSWORD};TrustServerCertificate=True
