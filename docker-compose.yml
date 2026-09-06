@@ -13,11 +13,11 @@ services:
     volumes:
       - mongo-data:/data/db
     healthcheck:
-      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      test: [ "CMD-SHELL", "mongosh --quiet --host localhost --eval \"db.adminCommand('ping').ok\" | grep 1" ]
       interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
+      timeout: 10s
+      retries: 15
+      start_period: 30s
 
   catalog-api:
     build:
