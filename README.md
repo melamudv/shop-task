@@ -1,6 +1,5 @@
 # Shop Task
 
-An educational online-store application with separate catalog and order services.
 
 ## Project Components
 
